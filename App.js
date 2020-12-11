@@ -20,12 +20,13 @@ export default function App() {
   const [dataLoaded, setDataloaded] = useState(false);
 
   if(!dataLoaded) {
-    return
+    return(
       <AppLoading
         startAsync={fetchFonts}
         onFinish={()=>{setDataloaded(true)}}
         onError={(err)=>console.log(err)}
       />
+      )
   }
 
   const startGameHandler = (selectedNumber) => {
