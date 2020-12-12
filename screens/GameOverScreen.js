@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
+import Colors from '../constants/colors';
 
 const GameOverScreen = props => {
   return(
@@ -10,14 +11,19 @@ const GameOverScreen = props => {
       <TitleText>The Game is Over </TitleText>
       <View style={styles.imageContainer}>
         <Image style={styles.image}
-               //source={require('../assets/mega.jpg')}
-               source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyaj8pKfxsl4tAQSpZQAbXFOcxf1CgqZ2mAw&usqp=CAU'}}
+               source={require('../assets/mega.jpg')}
+               //source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyaj8pKfxsl4tAQSpZQAbXFOcxf1CgqZ2mAw&usqp=CAU'}}
                resizeMode="cover"
                fadeDuration={300}
         />
       </View>
-      <BodyText>Number of rounds: {props.roundsNumber} </BodyText>
-      <BodyText>Number of was user was: {props.setUserNumber} </BodyText>
+      <View style={styles.resultContainer}>
+        <BodyText style={styles.resultText}>Your phone needed
+                  <Text style={styles.highlight}> {props.roundsNumber} </Text>
+                  rounds to guess the number
+                  <Text style={styles.highlight}> {props.setUserNumber} </Text>
+        </BodyText>
+      </View>
       <Button title="New Game " onPress={props.onRestart} />
     </View>
   );
@@ -41,6 +47,19 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     overflow: 'hidden',
     marginVertical: 30
+  },
+  resultContainer: {
+    marginHorizontal: 30,
+    marginVertical: 15
+  },
+  resultText:{
+    textAlign: 'center',
+    fontSize: 20
+  },
+  highlight: {
+    color: Colors.primary,
+    fontFamily: 'open-sans-bold',
+
   }
 });
 
